@@ -7,7 +7,7 @@ milestone-3-programmingape created by GitHub Classroom
 
 确定web 名字！
 
-#### 功能 & 可以做什么
+### 功能 & 可以做什么
 - log in 的情况下才可以对于team更改信息，名字，增加和删除。
 - 非log in 的情况下可以选择使用哪个robot，并且和这个robot进行对话。
   - 我们可以负责让我们内容设置第一句话。让后固定让gpt 回复 hello！
@@ -16,8 +16,10 @@ milestone-3-programmingape created by GitHub Classroom
 - 使用第三方API
   - 使用CHAT GPT 3.5
 - 包含多个data，这些data可以进行一些组合。
-- There should be a way of logging in - we'll be using Firebase Auth during the class.
-- There should be a form or some inputs that are shown to the user, and you send the data to your backend - we'll be using Firebase Firestore during the class.
+- **没有满足:** user可以输入一下东西，然后对于data进行储存。
+  - idea ：简单
+- **没有满足:** user可以输入一下东西，然后对于data进行储存。
+- **没有满足:** user可以输入一下东西，然后对于data进行储存。
 - You should be able to save the user's data and display it back to them - we'll be using React for this.
 
 ## Milestone 3 的要求
