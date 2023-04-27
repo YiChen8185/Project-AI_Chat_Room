@@ -8,26 +8,27 @@ milestone-3-programmingape created by GitHub Classroom
 确定web 名字！
 
 ### 功能 & 可以做什么
-功能
+#### 功能
 
-我们提前设定好机器人的简介，名字，头像和第一个prompt（三个）
+- 我们提前设定好机器人的简介，名字，头像和第一个prompt（三个）
+- 可以登陆界面，登陆界面是一个浮框。包含用户名和密码，密码可以是假的。
+  - 必须先登陆再去点击create team。
 
-user可以增加，减少team。team里面会包含team的简介，team的名字和拥有的robot。
+- user可以增加，减少和修改team。team里面会包含team的简介，team的名字和拥有的robot。
+  - team是完全空的，需要user自己去完成。
 
-点击 Team 以后，可以进行聊天。存储进入一个user id里面。
+- 点击 Team 以后，可以进行聊天。存储进入一个user id里面。
 
-Chat部分：仅仅是简单的聊天，然后使用第一个prompt. 直接设定为随机一个机器人。
+- Chat部分：仅仅是简单的聊天，然后使用第一个prompt. 直接设定为随机一个机器人。
 
-- 非log in 的情况下可以选择使用哪个robot，并且和这个robot进行对话。
-  - 我们可以负责让我们内容设置第一句话。让后固定让gpt 回复 hello！
+#### 要求
 
-####要求
 - 使用第三方API
   - 使用CHAT GPT 3.5
 - 包含多个data，这些data可以进行一些组合。
-  - idea ：team？
+  - 可以有多个team，以及不同的聊天。
 - You should be able to save the user's data and display it back to them - we'll be using React for this.
-  - team
+  - 已达成
 
 ## Milestone 3 的要求
 
