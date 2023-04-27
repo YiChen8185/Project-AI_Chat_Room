@@ -103,7 +103,6 @@ If you wind up deploying to a different hosting platform, you should still be ab
   - 使用CHAT GPT 3.5
 - 包含多个data，这些data可以进行一些组合。
 - There should be a way of logging in - we'll be using Firebase Auth during the class.
-  - 
 - There should be a form or some inputs that are shown to the user, and you send the data to your backend - we'll be using Firebase Firestore during the class.
 - You should be able to save the user's data and display it back to them - we'll be using React for this.
 
