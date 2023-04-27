@@ -95,9 +95,17 @@ If you wind up deploying to a different hosting platform, you should still be ab
 
 最后提前大约1-2天完成部署，这样子可以获得Submission！！
 
+#### 功能
+只有log in 的情况下才可以对于team更改信息，名字，增加和删除。
+
 - 一个拥有前后分离的前端➕后端软件
 - 使用第三方API
+  - 使用CHAT GPT 3.5
 - 包含多个data，这些data可以进行一些组合。
+- There should be a way of logging in - we'll be using Firebase Auth during the class.
+  - 
+- There should be a form or some inputs that are shown to the user, and you send the data to your backend - we'll be using Firebase Firestore during the class.
+- You should be able to save the user's data and display it back to them - we'll be using React for this.
 
 ### 第二步：之后再说
 
