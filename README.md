@@ -3,9 +3,7 @@ milestone-3-programmingape created by GitHub Classroom
 
 ## 第一步：完成Milestone3的任务
 
-最后提前大约1-2天完成部署，这样子可以获得Submission！！
-
-确定web 名字！
+#### 最后提前大约1-2天完成部署，这样子可以获得Submission！！
 
 ### 功能 & 可以做什么
 #### 功能
@@ -21,14 +19,19 @@ milestone-3-programmingape created by GitHub Classroom
 
 - Chat部分：仅仅是简单的聊天，然后使用第一个prompt. 直接设定为随机一个机器人。
 
-#### 要求
+#### 难点
 
-- 使用第三方API
-  - 使用CHAT GPT 3.5
-- 包含多个data，这些data可以进行一些组合。
-  - 可以有多个team，以及不同的聊天。
-- You should be able to save the user's data and display it back to them - we'll be using React for this.
-  - 已达成
+- ChatGPT：如何使用API
+- 前端和后端的互动
+- 如何使用SQL，重点是读取
+
+#### 需要完成的任务
+
+
+
+#### 任务分配
+
+
 
 ## Milestone 3 的要求
 
