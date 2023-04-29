@@ -32,6 +32,7 @@ milestone-3-programmingape created by GitHub Classroom
   - 在没有登陆的情况下不可以去Home
   - 每个user有一个独立的信息库
 - 建立团队：包括团队名字，简介，选择机器人的信息
+- 所有的team可以删除，一个人可以建多个team。
 
 ### 开发log
 
