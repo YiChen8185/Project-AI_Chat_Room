@@ -25,12 +25,15 @@ milestone-3-programmingape created by GitHub Classroom
 - 前端和后端的互动
 - 如何使用SQL，重点是读取
 
-#### 需要完成的任务
+### 开发
 
+- 登陆和team build
+  - 用户可以输入 名字，邮箱以及两次确认密码
+  - 在没有登陆的情况下不可以去Home
+  - 每个user有一个独立的信息库
+- 建立团队：包括团队名字，简介，选择机器人的信息
 
-
-#### 任务分配
-
+### 开发log
 
 
 ## Milestone 3 的要求
