@@ -1,6 +1,37 @@
 # milestone-3-programmingape
 milestone-3-programmingape created by GitHub Classroom
 
+#### Run the Code!
+
+可以直接用source venv/bin/activate
+
+``` shell
+python3 -m venv venv
+source venv/bin/activate
+```
+
+```shell
+pip3 install -r requirements.txt
+```
+
+前端
+
+``` shell
+cd frontend
+npm install
+npm start
+```
+
+后端
+
+```shell
+python3 backend/app.py
+```
+
+
+
+
+
 ## 第一步：完成Milestone3的任务
 
 #### 最后提前大约1-2天完成部署，这样子可以获得Submission！！

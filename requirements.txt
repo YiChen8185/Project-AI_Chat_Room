@@ -2,3 +2,7 @@ openai
 promptlayer
 python-dotenv
 flask
+flask-login 
+flask-sqlalchemy 
+requests 
+flask-cors
