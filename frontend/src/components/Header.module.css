@@ -1,0 +1,12 @@
+.header {
+    background-color: #25303F;
+    flex: 0 0 10px;
+    color: rgba(255, 255, 255, 0.69);
+    font-size: 8px; /* Adjust the font-size of the text inside the header */
+    line-height: 10px; /* Adjust the line-height to match the header height */
+    padding: 0; /* Remove any padding */
+    margin: 0; /* Remove any margin */
+    display: flex; /* Add flex display */
+    align-items: center; /* Align the content vertically to the center */
+    justify-content: center; /* Align the content horizontally to the center */
+}

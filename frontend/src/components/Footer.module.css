@@ -1,0 +1,63 @@
+.footer {
+    background-color: white;
+    padding: 0 17.08px 0 17.07px;
+    box-shadow: 0 1px 0 0 lavender inset;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: auto; /* Change the height to auto */
+    /* min-height: 100px; */
+}
+
+.frame2897 {
+    padding: 7.47px 0;
+    display: flex;
+    align-items: flex-end;
+    width: 94%;
+    align-self: stretch;
+    height: auto; /* Change the height to auto */
+}
+
+.startTyping {
+    width: 100%;
+    color: text-gray;
+    font-family: eloquia-text-7-regular;
+    border: none; /* Removes the border */
+    outline: none; /* Removes the focus outline */
+    background: none; /* Removes the default background */
+    resize: none; /* Disables manual resizing */
+    overflow: hidden; /* Hides the scrollbars */
+    height: auto; /* Change the height to auto */
+    min-height: 1em; /* Add a minimum height */
+}
+
+.startTyping::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar for WebKit browsers */
+}
+
+.frame2898 {
+    padding: 8.54px 6.39px 8.53px 23.48px;
+    display: flex;
+    align-items: center;
+    width: 5%;
+    /* Set the width to 10px */
+    height: auto;
+    /* Set the height to 10px */
+    cursor: pointer;
+    /* Change the cursor on hover */
+}
+
+@keyframes resize {
+    0% {
+        height: 1em;
+    }
+
+    100% {
+        height: auto;
+    }
+}
+
+.startTyping:focus,
+.startTyping:valid {
+    animation: resize 0.2s;
+}
