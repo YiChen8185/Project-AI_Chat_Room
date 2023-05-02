@@ -3,18 +3,24 @@ milestone-3-programmingape created by GitHub Classroom
 
 #### Run the Code!
 
-可以直接用source venv/bin/activate
+In case you want to use virtual environment
 
 ``` shell
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-```shell
+**Start Backend**
+
+``` shell
 pip3 install -r requirements.txt
 ```
 
-前端
+```shell
+python3 backend/app.py
+```
+
+**Start Frontend**
 
 ``` shell
 cd frontend
@@ -22,20 +28,6 @@ npm install
 npm install react-router-dom
 npm start
 ```
-
-后端
-
-```shell
-python3 backend/app.py
-```
-
-
-
-
-
-## 第一步：完成Milestone3的任务
-
-#### 最后提前大约1-2天完成部署，这样子可以获得Submission！！
 
 ### 功能 & 可以做什么
 #### 功能
@@ -57,16 +49,32 @@ python3 backend/app.py
 - 前端和后端的互动
 - 如何使用SQL，重点是读取
 
-### 开发
+### What we have done
 
-- 登陆和team build
-  - 用户可以输入 名字，邮箱以及两次确认密码
-  - 在没有登陆的情况下不可以去Home
-  - 每个user有一个独立的信息库
-- 建立团队：包括团队名字，简介，选择机器人的信息
-- 所有的team可以删除，一个人可以建多个team。
+这次的框架是由我们与milestone完全不一样写的框架，使用Flask基于Python做为后端，前端使用REACT。我们希望做出一个真的有意义的project，所以我们这次的开发加入了ChatGPT AI。并以这个为核心功能开始开发我们项目，并且ChatGPT实际上以及被我们提前使用Prompt进行pre- train。
 
-### 开发log
+功能一：ChatGPT Communicate
+
+- 使用API
+  - 通过ChatGPT的官方document学习了如何使用它的API，并把它加入到了project中。在核心的聊天功能中，实际上就是和ChatGPT进行聊天。
+- 提前训练Prompt
+  - 通过大量测试，我们提前为ChatGPT写好了文字，也就是里面的实际上进行回答的问题，是我们已经完成预处理的。
+  - 我们做了多个prompt，所以user可以遇到不一样的robot，并且会有不一样的回答。
+
+功能二：团队建造与数据可交互
+
+- 团队
+  - 建立团队：可以加入名字和描述。每个user可以建立多个团队。团队
+  - 删除团队：从Database中删除选取的团队。
+- 独立数据库
+  - 我们为团队独立建了一个数据库，但是通过技术把两个数据库。team中加入user.id来确保只有一个owner，而user中有一个notes，可以获得所有相关的notes。
+
+功能三：登陆（因为是一个全新的模版，我们依旧花费了大量时间在完成登陆界面）
+
+- 登陆
+  - 创造账号：可以输入 名字，邮箱以及两次确认密码。账号会被记录在flask后端的database中。
+  - 登陆界面：通过搜索database确认身份（有密码），然后进行登陆。
+  - 登出
 
 
 ## Milestone 3 的要求
@@ -155,7 +163,5 @@ If you wind up deploying to a different hosting platform, you should still be ab
 - How long did your function take to run?
 - Did you see any errors? If you don't see errors, that's fine, but your screenshot should show it)
 
-### 第二步：之后再说
-
-### 第三步：debug，完善和部署
+### 第二步：之后再说（这个不急）
 
