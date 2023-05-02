@@ -49,6 +49,14 @@ npm start
 - 前端和后端的互动
 - 如何使用SQL，重点是读取
 
+### Links may help
+
+https://towardsdatascience.com/build-deploy-a-react-flask-app-47a89a5d17d9
+
+
+
+
+
 ### What we have done
 
 这次的框架是由我们与milestone完全不一样写的框架，使用Flask基于Python做为后端，前端使用REACT。我们希望做出一个真的有意义的project，所以我们这次的开发加入了ChatGPT AI。并以这个为核心功能开始开发我们项目，并且ChatGPT实际上以及被我们提前使用Prompt进行pre- train。
