@@ -38,20 +38,10 @@ def create_team():
 
     return jsonify({"message": "Team created successfully", "team_id": team_id})
 
-@app.route("/@me")
-def get_current_user():
-    user_id = session.get("user_id")
-    if not user_id:
-        return jsonify({"message": "No user logged in"}), 401
-    user = User.query.filter_by(id=user_id).first()
-    return jsonify({
-        "id": user.id,
-        "name": user.name,
-    })
 
 @app.route('/logout', methods=['POST'])
 def logout():
-    session.pop('user_id')
+    # session.pop('user_id')
     return jsonify({"message": "Logged out successfully"})
 
 
@@ -75,7 +65,7 @@ def sign_up():
             new_user = User(email=email, password=password1, name=name)
             db.session.add(new_user)
             db.session.commit()
-            session['user_id'] = new_user.id
+            # session['user_id'] = new_user.id
             print("---------------------------------")
             print("DATA Create")
             return jsonify({'message': 'Account created'}), 201
@@ -95,14 +85,50 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user:
             if user.password == password:
-                session['user_id'] = user.id
+                # session['user_id'] = user.id
                 print("---------------------------------")
-                print("Logged in successfully")
-                return jsonify({'message': 'Logged in successfully'}), 201
+                print("Logged in successfully: " + str(user.id))
+                return jsonify({'user_id': user.id}), 201
             else:
                 return jsonify({'message': 'Incorrect password!'}), 409
         else:
             return jsonify({'message': 'Email does not exist!'}), 409
+        
+@app.route('/y/create-team', methods=['POST'])
+def api_create_team():
+    name = request.json['name']
+    description = request.json['description']
+    user_id = request.json['user_id']
+    print("----------------enter_team-----------------")
+    print(name + " " + description + " " + str(user_id))
+    new_team = Team(name=name, description=description, user_id=user_id)
+    db.session.add(new_team)
+    db.session.commit()
+    print("----------------create_team-----------------")
+    team_dict = {
+    'id': new_team.id,
+    'name': new_team.name,
+    'description': new_team.description,
+    'user_id': new_team.user_id
+    }
+    return jsonify({'team': team_dict}), 201
+
+@app.route('/get-teams', methods=['POST'])
+def get_teams():
+    print("----------------get_team-----------------")
+    print("id" + str(request.json['user_id']))
+    user_id = request.json['user_id']
+    teams = Team.query.filter_by(user_id=user_id).all()
+    team_data = []
+    
+    for team in teams:
+        print("team_name: " + str(team.name))
+        team_data.append({
+            'name': team.name,
+            'description': team.description
+        })
+    
+    return jsonify({'teams': team_data}), 201
 
 if __name__ == '__main__':
     app.run(debug=True)

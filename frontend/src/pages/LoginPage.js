@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+const LoginPage = props => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
   
@@ -13,7 +15,6 @@ const LoginPage = () => {
   
     const loginUser = async (email, password) => {
       console.log(email, password);
-  
       try {
         const resp = await fetch("http://localhost:5000/login", {
           method: "POST",
@@ -23,9 +24,11 @@ const LoginPage = () => {
             password,
           }),
         });
-        // Go to HomePage.
-        console.log(resp);
-        window.location.href = "/HomePage";
+        const responce = await resp.json();
+        console.log(responce);
+        props.onUserID(responce.user_id);
+        props.onLogin();
+        navigate("/HomePage");
       } catch (error) {
         console.log(error.message);
       }
