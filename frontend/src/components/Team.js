@@ -9,13 +9,14 @@ const Team = ({
     title = "Your Team:",
     selectedHeroes,
     onResetHeroes,
+    user_id
 }) => {
     const [teamName, setTeamName] = useState("");
     const [teamDescription, setTeamDescription] = useState(""); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log("Team.js Test enter sumbit: " + teamName, teamDescription, selectedHeroes, user_id);
         try {
             const response = await fetch("http://127.0.0.1:5000/api/create-team", {
                 method: "POST",
@@ -26,6 +27,7 @@ const Team = ({
                     name: teamName,
                     description: teamDescription,
                     members: selectedHeroes,
+                    user_id: user_id,
                 }),
             });
 

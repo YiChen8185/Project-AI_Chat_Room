@@ -2,8 +2,16 @@ import './ChatPage.css';
 
 import Header from './../components/Header';
 import ChatWindow from './../components/ChatWindow';
+import TestGetTeam from './../components/TestGetTeam';
+import { useEffect } from 'react';
 
-function ChatPage() {
+// function ChatPage()
+const ChatPage = (props) => {
+
+  useEffect (() => {
+    console.log("UserID: " + props.userID);
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -12,6 +20,7 @@ function ChatPage() {
       <div className="App-Content1">
         <div className="left">
           <p>team</p>
+          <TestGetTeam userID={props.userID} />
         </div>
         <div className="right">
           <Header />

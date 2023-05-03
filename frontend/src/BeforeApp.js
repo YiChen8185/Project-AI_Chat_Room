@@ -6,6 +6,8 @@ import {
   } from "react-router-dom";
 import App from "./App";
 import ChatPage from "./pages/ChatPage";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 import React, { useState, useEffect } from "react";
 
 const BeforeApp = () => {
@@ -17,11 +19,28 @@ const BeforeApp = () => {
                 <Routes>
                     <Route
                         path="/"
-                        element={<App />}
+                        element={<App 
+                            isSignedIn={isSignedIn}
+                            logOut={() => setIsSignedIn(false)}
+                            userID = {userID}
+                        />}
                     />
                     <Route
                         path="/ChatPage"
-                        element={<ChatPage />}
+                        element={<ChatPage 
+                            userID = {userID}
+                        />}
+                    />
+                    <Route
+                        path="/RegisterPage"
+                        element={<RegisterPage />}
+                    />
+                    <Route
+                        path="/LoginPage"
+                        element={<LoginPage 
+                            onLogin={() => {setIsSignedIn(true);}}
+                            onUserID={(id) => {setUserID(id);}}
+                        />}
                     />    
                 </Routes>
             </Router>

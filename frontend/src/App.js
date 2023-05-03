@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./App.css";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import Header from "./components/Header";
 import ChatWindow from "./components/ChatWindow";
@@ -10,10 +12,15 @@ import myImg from "./assets/img/23117.png";
 
 import { useNavigate } from "react-router-dom";
 
-function App() {
+// 把userID带入到ChatPage里
+
+// 把function改成const
+const App = props => {
   const [selectedHeroes, setSelectedHeroes] = useState([]);
   const resetHeroesRef = useRef();
   const navigate = useNavigate();
+  const [name, setTeamName] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleHeroClick = (heroName, isSelected) => {
     if (isSelected) {
@@ -29,6 +36,20 @@ function App() {
     }
   };
 
+  const logoutUser = async () => {
+    const response = await fetch("http://127.0.0.1:5000/logout", {
+      method: "POST",
+    });
+    const responce = await response.json();
+    console.log(responce);
+    props.logOut();
+  };
+
+  useEffect(() => {
+    console.log("isSignedIn: " + props.isSignedIn);
+    console.log("HomePage userID: " + props.userID)
+  }, [props.isSignedIn]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -40,13 +61,34 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h3>AI Team</h3>
+        <div>
+          {props.isSignedIn &&(
+            <div>
+              <button onClick={logoutUser}>loggout</button>
+            </div>
+          )}
+          {!props.isSignedIn &&(
+            <div>
+                <div>
+                  <Link className="button" to="/LoginPage">Login</Link>
+                </div>
+                <div>
+                  <Link className="button" to="/RegisterPage">Register</Link>
+                </div>              
+            </div>
+          )}
+        </div>
       </header>
       <div className="App-Content">
         <Herobox onHeroClick={handleHeroClick} onResetHeroes={(resetFn) => (resetHeroesRef.current = resetFn)} />
         <div className="circle-image">
           <img src={myImg} alt="My Image" />
         </div>
-        <Team selectedHeroes={selectedHeroes} onResetHeroes={handleResetHeroes} />
+        <Team 
+          selectedHeroes={selectedHeroes} 
+          onResetHeroes={handleResetHeroes} 
+          user_id = {props.userID}
+        />
         <button className="cta1" onClick={handleSubmit}>
           <p className="labelTwo1">Go to Chat</p>
         </button>
