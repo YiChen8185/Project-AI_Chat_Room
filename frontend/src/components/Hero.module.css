@@ -1,0 +1,51 @@
+.country {
+    background-color: #2f4f4f;
+    border-radius: 4px;
+    padding: 7px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #000000;
+    width: 170px;
+    height: 55px;
+    margin-bottom: 5px;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;
+    width: 100%;
+    height: 100%;
+  }
+  .maskCopy {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+  }
+  .content {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex: 1;
+  }
+  .canada {
+    color: #ffe4e1;
+    font-family: 'SF Compact Rounded', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    height: 10px;
+  }
+  .num200Destinations {
+    color: #ffe4e1;
+    font-family: 'SF Compact Rounded', sans-serif;
+    font-weight: 300;
+    font-size: 6px;
+  }
+  
+  .selected {
+    background-color: #3e8e41;
+  }
