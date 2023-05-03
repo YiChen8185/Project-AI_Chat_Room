@@ -1,79 +1,62 @@
 import { useState } from "react";
+import './LoginPage.css';
 import { useNavigate } from "react-router-dom";
+import './../components/BackToHome.js'
+import BackToHome from "./../components/BackToHome.js";
 
 const LoginPage = (props) => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    loginUser(email, password);
-  };
+    const login = async () => {
+        try {
+            const resp = await fetch("http://localhost:5000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            });
+            const data = await resp.json();
+            if (data.user_id != null) {
+                props.onLogin();
+                props.onUserID(data.user_id);
+                navigate("/");
+            } else {
+                setErrorMessage(data.message);
+            }
+        } catch (error) {
+            console.log(error.message);
+            setErrorMessage("An error occurred. Please try again later.");
+        }
+    };
 
-  const loginUser = async (email, password) => {
-    console.log(email, password);
-    try {
-      const resp = await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
-      const responce = await resp.json();
-      console.log(responce);
-      if(responce.user_id != undefined){
-        props.onUserID(responce.user_id);
-        props.onLogin();
-        navigate("/");
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await login();
+    };
 
-  return (
-    <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-md-4">
-          <div className="card mt-5">
-            <div className="card-body">
-              <h3 className="card-title mb-4">Login In</h3>
-              <form onSubmit={handleLogin}>
+    return (
+        <div className="login-container">
+            <h1>Login</h1>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <form onSubmit={handleSubmit} className="login-form">
                 <div className="form-group">
-                  <label htmlFor="email">Email:</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter email"
-                  />
+                    <label htmlFor="email">Email:</label>
+                    <input type="text" className="form-control" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password">Password:</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter password"
-                  />
+                    <label htmlFor="password">Password:</label>
+                    <input type="password" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                <button type="submit" className="btn btn-primary btn-block">
-                  Submit
-                </button>
-              </form>
-            </div>
-          </div>
+                <button type="submit" className="btn btn-primary">Login</button>
+            </form>
+            <BackToHome />
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default LoginPage;

@@ -71,7 +71,7 @@ def sign_up():
             # session['user_id'] = new_user.id
             print("---------------------------------")
             print("DATA Create")
-            return jsonify({'message': 'Account created'}), 201
+            return jsonify({'created': True}), 201
                 # return redirect(url_for('views.home'))
     else:
         return "Failed"
