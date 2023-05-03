@@ -36,6 +36,7 @@ const RegisterPage = () => {
   };
 
   return (
+    <div>
     <div className="register-container">
       <form onSubmit={handleRegister} className="register-form">
         <h3 align="center">Sign Up</h3>
@@ -86,7 +87,8 @@ const RegisterPage = () => {
           Submit
         </button>
       </form>
-      <BackToHome />
+    </div>
+    <div><BackToHome /></div>
     </div>
   );
 };
