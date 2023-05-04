@@ -32,7 +32,7 @@ const TestGetTeam = (props) => {
             <p>TestGetTeam</p>
             {Array.isArray(teams) && teams.map((team, index) => (
                 <div key={index}>
-                    <h2>{team.name}</h2>
+                    <h4>{team.name}</h4>
                     <p>{team.description}</p>
                     <p>Members:</p>
                     <ul>

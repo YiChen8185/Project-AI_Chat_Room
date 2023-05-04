@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Team.module.css";
 
 const Team = ({
@@ -11,12 +11,13 @@ const Team = ({
     onResetHeroes,
     user_id
 }) => {
+    const [teams, setTeams] = useState("");
     const [teamName, setTeamName] = useState("");
     const [teamDescription, setTeamDescription] = useState(""); 
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Team.js Test enter sumbit: " + teamName, teamDescription, selectedHeroes, user_id);
         try {
             const response = await fetch("http://127.0.0.1:5000/api/create-team", {
                 method: "POST",
@@ -30,14 +31,36 @@ const Team = ({
                     user_id: user_id,
                 }),
             });
-
             const data = await response.json();
-            console.log(data);
+            setErrorMessage(data.message);
+            console.log("teamCreate! ", JSON.stringify(data));
+            getTeam();
             onResetHeroes();
         } catch (error) {
             console.error("Error:", error);
         }
     };
+
+    useEffect(() => {
+        getTeam();
+    }, []);
+
+    const getTeam = async () => {
+        try {
+          const resp = await fetch("http://localhost:5000/get-teams", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              user_id: user_id,
+            }),
+          });
+          const responce = await resp.json();
+          console.log("teamCreate", JSON.stringify(responce.teams, null, 2));
+          setTeams(responce.teams);
+        } catch (error) {
+          console.log(error.message);
+        }
+    }
 
     return (
         <div className={styles.selectCountry}>
@@ -60,9 +83,20 @@ const Team = ({
             <button className={styles.cta} onClick={handleSubmit}>
                 <p className={styles.labelTwo}>{buttontxt}</p>
             </button>
+            {errorMessage && <p className="error-message2">{errorMessage}</p>}
             <div className={styles.header}>
                 <p className={styles.title}>{title}</p>
-                <p className={styles.subtitle}>{subtitle}</p>
+                {!teams && (
+                    <p className={styles.subtitle}>
+                        {subtitle}
+                    </p>
+                )}
+                {teams && teams.map((team) => (
+                    <React.Fragment key={team.name}>
+                        {team.name}
+                        <br />
+                    </React.Fragment>
+                ))}
             </div>
         </div>
     );

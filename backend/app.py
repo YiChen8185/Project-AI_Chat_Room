@@ -34,13 +34,18 @@ def create_team():
     members = team_data['members']
     user_id = team_data['user_id']
     print("----------------enter_team-----------------")
-    print(name + " " + description + " " + str(user_id) + " " + str(members))
+    teams = Team.query.filter_by(name=name)
+    for team in teams:
+        if team and team.user_id == user_id:
+            return jsonify({'message': 'Team already exists.'}), 409
+    if name == '' or description == '':
+        return jsonify({'message': 'Name&description is required!'}), 409
     new_team = Team(name=name, description=description, members=members, user_id=user_id)
     db.session.add(new_team)
     db.session.commit()
     print("----------------team_created-----------------")
-
-    return jsonify({"message": "Team created successfully", "team_name": name})
+    print(name + " " + description + " " + str(user_id) + " " + str(members))
+    return jsonify({"message": "Team created successfully"})
 
 @app.route('/logout', methods=['POST'])
 def logout():

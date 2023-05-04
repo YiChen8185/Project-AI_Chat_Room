@@ -27,13 +27,19 @@ npm install react-router-dom
 npm start
 ```
 
-#### 文档介绍
+# 需要做什么
 
-I. Overall
+1. 存储聊天记录，可以在每一个team里面储存。
+   1. 记录所有的文字，并加入到一个History中。
+   2. 可以点击History。然后查看history的信息。
+2. 建立team，包括可以选择机器人。在左边显示，只选一个。
+   1. 下面显示已经有的队伍
+   2. chat左边显示team info。
+      1. 是否要点击team，然后进入？
 
-II. Features
 
-III. Detail
+
+
 
 ## Overall
 

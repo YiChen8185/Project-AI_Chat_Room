@@ -62,36 +62,39 @@ const App = props => {
       <header className="App-header">
         <h3>AI Team</h3>
         <div>
-          {props.isSignedIn &&(
-            <div>
-              <button onClick={logoutUser}>loggout</button>
-            </div>
-          )}
-          {!props.isSignedIn &&(
-            <div>
-                <div>
-                  <Link className="button" to="/LoginPage">Login</Link>
-                </div>
-                <div>
-                  <Link className="button" to="/RegisterPage">Register</Link>
-                </div>              
-            </div>
-          )}
+
         </div>
       </header>
       <div className="App-Content">
-        <Herobox onHeroClick={handleHeroClick} onResetHeroes={(resetFn) => (resetHeroesRef.current = resetFn)} />
         <div className="circle-image">
           <img src={myImg} alt="My Image" />
         </div>
-        <Team 
-          selectedHeroes={selectedHeroes} 
-          onResetHeroes={handleResetHeroes} 
-          user_id = {props.userID}
-        />
-        <button className="cta1" onClick={handleSubmit}>
-          <p className="labelTwo1">Go to Chat</p>
-        </button>
+        {props.isSignedIn &&(
+            <div>
+              <button onClick={logoutUser}>loggout</button>
+              <Herobox onHeroClick={handleHeroClick} onResetHeroes={(resetFn) => (resetHeroesRef.current = resetFn)} />
+              <Team 
+                selectedHeroes={selectedHeroes} 
+                onResetHeroes={handleResetHeroes} 
+                user_id = {props.userID}
+              />
+              <button className="cta1" onClick={handleSubmit}>
+                <p className="labelTwo1">Go to Chat</p>
+              </button> 
+            </div>
+        )}
+        
+        {!props.isSignedIn &&(
+          <div>
+              <div>
+                <Link className="button" to="/LoginPage">Login</Link>
+              </div>
+              <div>
+                <Link className="button" to="/RegisterPage">Register</Link>
+              </div>            
+          </div>
+        )}
+
       </div>
     </div>
   );

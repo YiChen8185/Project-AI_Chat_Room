@@ -4,6 +4,7 @@ import Header from './../components/Header';
 import ChatWindow from './../components/ChatWindow';
 import TestGetTeam from './../components/TestGetTeam';
 import { useEffect } from 'react';
+import BackToHome from "./../components/BackToHome.js";
 
 // function ChatPage()
 const ChatPage = (props) => {
@@ -19,6 +20,7 @@ const ChatPage = (props) => {
       </header>
       <div className="App-Content1">
         <div className="left">
+          <BackToHome />
           <p>team</p>
           <TestGetTeam userID={props.userID} />
         </div>
