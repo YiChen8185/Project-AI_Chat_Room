@@ -13,7 +13,7 @@ const RegisterPage = () => {
     e.preventDefault();
 
     try {
-      const resp = await fetch("http://localhost:5000/register", {
+      const resp = await fetch("http://127.0.0.1:5000/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -24,7 +24,7 @@ const RegisterPage = () => {
         }),
       });
       const data = await resp.json();
-      if (data.created  === true) {
+      if (data.created === true) {
         window.location.href = "/";
       } else {
         setErrorMessage(data.message);
@@ -37,58 +37,60 @@ const RegisterPage = () => {
 
   return (
     <div>
-    <div className="register-container">
-      <form onSubmit={handleRegister} className="register-form">
-        <h3 align="center">Sign Up</h3>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <div className="form-group">
-          <label htmlFor="email">Email: </label>
-          <input
-            type="text"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            id="email"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="name">Name: </label>
-          <input
-            type="text"
-            className="form-control"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            id="name"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password1">Password: </label>
-          <input
-            type="password"
-            className="form-control"
-            value={password1}
-            onChange={(e) => setPassword1(e.target.value)}
-            placeholder="Enter password"
-            id="password1"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password2">Password (Confirm): </label>
-          <input
-            type="password"
-            className="form-control"
-            value={password2}
-            onChange={(e) => setPassword2(e.target.value)}
-            placeholder="Confirm password"
-            id="password2"
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-    </div>
-    <div><BackToHome /></div>
+      <div className="register-container">
+        <form onSubmit={handleRegister} className="register-form">
+          <h3 align="center">Sign Up</h3>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <div className="form-group">
+            <label htmlFor="email">Email: </label>
+            <input
+              type="text"
+              className="form-control"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              id="email"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="name">Name: </label>
+            <input
+              type="text"
+              className="form-control"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              id="name"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password1">Password: </label>
+            <input
+              type="password"
+              className="form-control"
+              value={password1}
+              onChange={(e) => setPassword1(e.target.value)}
+              placeholder="Enter password"
+              id="password1"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password2">Password (Confirm): </label>
+            <input
+              type="password"
+              className="form-control"
+              value={password2}
+              onChange={(e) => setPassword2(e.target.value)}
+              placeholder="Confirm password"
+              id="password2"
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div className="back">
+        <BackToHome />
+      </div>
     </div>
   );
 };

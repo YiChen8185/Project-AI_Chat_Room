@@ -12,7 +12,7 @@ const LoginPage = (props) => {
 
     const login = async () => {
         try {
-            const resp = await fetch("http://localhost:5000/login", {
+            const resp = await fetch("http://127.0.0.1:5000/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -41,7 +41,7 @@ const LoginPage = (props) => {
 
     return (
         <div className="login-container">
-            <h1>Login</h1>
+            <h1 >Login</h1>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <form onSubmit={handleSubmit} className="login-form">
                 <div className="form-group">
@@ -54,7 +54,9 @@ const LoginPage = (props) => {
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>
             </form>
-            <BackToHome />
+            <div className="back">
+                <BackToHome />
+            </div>
         </div>
     );
 };

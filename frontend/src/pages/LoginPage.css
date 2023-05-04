@@ -1,49 +1,90 @@
-.login-form {
-    margin: 20px auto;
-    max-width: 400px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.login-form h1 {
-    margin-top: 0;
-}
-
-.login-form label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.login-form input {
-    display: block;
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    margin-bottom: 2rem;
+    color: #424F61;
+    font-size: 2.5rem;
+  }
+  
+  .error-message {
+    margin-bottom: 1rem;
+    color: #ff5a5a;
+    font-size: 1rem;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.login-form button {
-    display: block;
-    width: 100%;
-    padding: 10px;
+    max-width: 300px;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #424F61;
+  }
+  
+  .form-control {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: #4285f4;
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+  }
+  
+  .btn-primary {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: white;
+    background-color: #4285f4;
     border: none;
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-}
+    transition: background-color 0.2s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2b65db;
+  }
+  
+  .btn-primary:active {
+    background-color: #1f4dc6;
+  }
+  
+  .btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+  }
 
-.login-form button:hover {
-    background-color: #0062cc;
-}
-
-.error-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
-    border: 1px solid #f5c6cb;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
+  .back{
+    position: absolute;
+    top:10px;
+    left:10px;
+  }
+  

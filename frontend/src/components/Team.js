@@ -13,7 +13,7 @@ const Team = ({
 }) => {
     const [teams, setTeams] = useState("");
     const [teamName, setTeamName] = useState("");
-    const [teamDescription, setTeamDescription] = useState(""); 
+    const [teamDescription, setTeamDescription] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = async (e) => {
@@ -47,18 +47,18 @@ const Team = ({
 
     const getTeam = async () => {
         try {
-          const resp = await fetch("http://localhost:5000/get-teams", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              user_id: user_id,
-            }),
-          });
-          const responce = await resp.json();
-          console.log("teamCreate", JSON.stringify(responce.teams, null, 2));
-          setTeams(responce.teams);
+            const resp = await fetch("http://localhost:5000/get-teams", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    user_id: user_id,
+                }),
+            });
+            const responce = await resp.json();
+            console.log("teamCreate", JSON.stringify(responce.teams, null, 2));
+            setTeams(responce.teams);
         } catch (error) {
-          console.log(error.message);
+            console.log(error.message);
         }
     }
 
@@ -83,21 +83,22 @@ const Team = ({
             <button className={styles.cta} onClick={handleSubmit}>
                 <p className={styles.labelTwo}>{buttontxt}</p>
             </button>
-            {errorMessage && <p className="error-message2">{errorMessage}</p>}
-            <div className={styles.header}>
-                <p className={styles.title}>{title}</p>
-                {!teams && (
-                    <p className={styles.subtitle}>
-                        {subtitle}
+            {/* {errorMessage && <p className={styles.errormessage2}>{errorMessage}</p>} */}
+            {errorMessage && (
+                <div className={styles.messagecontainer}>
+                    <p
+                        className={
+                            errorMessage === "Team created successfully"
+                                ? styles.successmessage
+                                : errorMessage === "Team already exists."
+                                    ? styles.errormessage
+                                    : ""
+                        }
+                    >
+                        {errorMessage}
                     </p>
-                )}
-                {teams && teams.map((team) => (
-                    <React.Fragment key={team.name}>
-                        {team.name}
-                        <br />
-                    </React.Fragment>
-                ))}
-            </div>
+                </div>
+            )}
         </div>
     );
 };

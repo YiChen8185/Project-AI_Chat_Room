@@ -1,5 +1,5 @@
 .country {
-    background-color: #2f4f4f;
+    background-color: #181925;
     border-radius: 4px;
     padding: 7px;
     display: flex;
@@ -47,5 +47,5 @@
   }
   
   .selected {
-    background-color: #3e8e41;
+    background-color: #5D99B3;
   }

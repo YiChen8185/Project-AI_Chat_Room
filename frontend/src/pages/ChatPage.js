@@ -20,13 +20,15 @@ const ChatPage = (props) => {
       </header>
       <div className="App-Content1">
         <div className="left">
-          <BackToHome />
-          <p>team</p>
+          {/* <BackToHome /> */}
           <TestGetTeam userID={props.userID} />
         </div>
         <div className="right">
           <Header />
           <ChatWindow />
+        </div>
+        <div className="back">
+          <BackToHome />
         </div>
       </div>
     </div>

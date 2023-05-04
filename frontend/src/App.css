@@ -8,16 +8,43 @@
 .App-header {
   background-color: #424F61;
   width: 100%;
-  /* min-height: 100vh; */
-  flex: 0 0 60px;
-  /* height: '60px'; */
+  height: 60px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* font-size: calc(1px + 2vmin); */
+  font-size: 16px;
   color: white;
 }
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header-left {
+  flex: 1;
+}
+
+.header-center {
+  text-align: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.login, .register {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: #ffe4e1;
+}
+
 
 .App-Content {
   position: relative;
@@ -69,8 +96,8 @@
   cursor: pointer;
   position: absolute;
   width: 200px;
-  right: 50px;
-  bottom: 10px;
+  right: 70px;
+  bottom: 100px;
 }
 
 .labelTwo1 {

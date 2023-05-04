@@ -52,3 +52,9 @@
     padding: 0.1rem;
     position: relative;
   }
+
+  .back{
+    position: absolute;
+    top:10px;
+    left:10px;
+  }
