@@ -35,6 +35,46 @@ const ChatWindow = () => {
       return questions;
     };
 
+    const saveHistoryToBackend = async (message) => {
+      setMessages([...messages, message]);
+      const prevMessages = messages;
+      const updatedMessages = [...prevMessages, message];
+      const team_id = 1;
+      const response = await fetch("http://127.0.0.1:5000/save-history", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          team_id: team_id,
+          history: updatedMessages, 
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+    };
+
+    const getHistoryFromBackend = async () => {
+      const team_id = 1;
+      const response = await fetch("http://127.0.0.1:5000/get-history", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          team_id: team_id, 
+        }),
+      });
+      const data = await response.json();
+      if(data.history.length > 0){
+        setMessages(data.history);
+      }
+    };  
+
+
+    useEffect(() => {
+      getHistoryFromBackend();
+    }, []);
 
     useEffect(() => {
       if (
@@ -45,7 +85,7 @@ const ChatWindow = () => {
           const question = messages[messages.length - 1].text;
           const answer = await sendQuestionToAPI(question);
           // const questions = await getMoreQuestionsFromAPI();
-          handleSendMessage({ text: answer, sender: "chatgpt" });
+          saveHistoryToBackend({ text: answer, sender: "chatgpt" });
         };
   
         fetchAnswerAndUpdateMessages();

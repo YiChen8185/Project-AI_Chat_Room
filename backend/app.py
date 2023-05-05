@@ -33,7 +33,7 @@ def create_team():
     description = team_data['description']
     members = team_data['members']
     user_id = team_data['user_id']
-    print("----------------enter_team-----------------")
+    print("----------------/api/create-team-----------------")
     teams = Team.query.filter_by(name=name)
     for team in teams:
         if team and team.user_id == user_id:
@@ -46,6 +46,48 @@ def create_team():
     print("----------------team_created-----------------")
     print(name + " " + description + " " + str(user_id) + " " + str(members))
     return jsonify({"message": "Team created successfully"})
+
+@app.route('/get-teams', methods=['POST'])
+def get_teams():
+    print("----------------get_team-----------------")
+    print("id: " + str(request.json['user_id']))
+    user_id = request.json['user_id']
+    teams = Team.query.filter_by(user_id=user_id).all()
+    team_data = []
+    
+    for team in teams:
+        print("team_name: " + str(team.name))
+        team_data.append({
+            'id': team.id,
+            'name': team.name,
+            'description': team.description,
+            'members': team.members,
+        })
+    print("----------------team_gotten-----------------")
+    return jsonify({'teams': team_data}), 201
+
+
+@app.route('/save-history' , methods=['POST'])
+def save_history():
+    print("----------------enter save_history-----------------")
+    team_id = request.json['team_id']
+    history = request.json['history']
+    team = Team.query.filter_by(id=team_id).first()
+    team.history = history
+    db.session.commit()
+    print("----------------history_saved-----------------")
+    return jsonify({"message": "History saved successfully"})
+
+@app.route('/get-history', methods=['POST'])
+def get_history():
+    print("----------------enter save_history-----------------")
+    team_id = request.json['team_id']
+    team = Team.query.filter_by(id=team_id).first()
+    if not team:
+        return jsonify({'message': 'Team not found.'}), 409
+    history = team.history
+    print("----------------history_saved-----------------")
+    return jsonify({"history": history})   
 
 @app.route('/logout', methods=['POST'])
 def logout():
@@ -102,43 +144,24 @@ def login():
         else:
             return jsonify({'message': 'Email does not exist!'}), 409
         
-@app.route('/y/create-team', methods=['POST'])
-def api_create_team():
-    name = request.json['name']
-    description = request.json['description']
-    user_id = request.json['user_id']
-    print("----------------enter_team-----------------")
-    print(name + " " + description + " " + str(user_id))
-    new_team = Team(name=name, description=description, user_id=user_id)
-    db.session.add(new_team)
-    db.session.commit()
-    print("----------------create_team-----------------")
-    team_dict = {
-    'id': new_team.id,
-    'name': new_team.name,
-    'description': new_team.description,
-    'user_id': new_team.user_id
-    }
-    return jsonify({'team': team_dict}), 201
-
-@app.route('/get-teams', methods=['POST'])
-def get_teams():
-    print("----------------get_team-----------------")
-    print("id" + str(request.json['user_id']))
-    user_id = request.json['user_id']
-    teams = Team.query.filter_by(user_id=user_id).all()
-    team_data = []
-    
-    for team in teams:
-        print("team_name: " + str(team.name))
-        team_data.append({
-            'name': team.name,
-            'description': team.description,
-            'members': team.members,
-        })
-    print("----------------team_gotten-----------------")
-    return jsonify({'teams': team_data}), 201
-
+# @app.route('/y/create-team', methods=['POST'])
+# def api_create_team():
+#     name = request.json['name']
+#     description = request.json['description']
+#     user_id = request.json['user_id']
+#     print("----------------enter_team-----------------")
+#     print(name + " " + description + " " + str(user_id))
+#     new_team = Team(name=name, description=description, user_id=user_id)
+#     db.session.add(new_team)
+#     db.session.commit()
+#     print("----------------create_team-----------------")
+#     team_dict = {
+#     'id': new_team.id,
+#     'name': new_team.name,
+#     'description': new_team.description,
+#     'user_id': new_team.user_id
+#     }
+#     return jsonify({'team': team_dict}), 201
 
 if __name__ == '__main__':
     app.run(debug=True)
