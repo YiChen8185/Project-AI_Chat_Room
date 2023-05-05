@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./ChatWindow.module.css";
 import Footer from "./Footer";
 
-const ChatWindow = () => {
-    const [messages, setMessages] = useState([]);
+export const ChatWindow = (props) => {
     const [moreQuestions, setMoreQuestions] = useState({
       explain_more_questions: "",
       in_depth_questions: "",
@@ -36,10 +35,11 @@ const ChatWindow = () => {
     };
 
     const saveHistoryToBackend = async (message) => {
-      setMessages([...messages, message]);
-      const prevMessages = messages;
+      console.log("saveHistoryToBackend: " + props.team_id)
+      props.setMessages([...props.messages, message]);
+      const prevMessages = props.messages;
       const updatedMessages = [...prevMessages, message];
-      const team_id = 1;
+      const team_id = props.team_id;
       const response = await fetch("http://127.0.0.1:5000/save-history", {
         method: "POST",
         headers: {
@@ -54,46 +54,26 @@ const ChatWindow = () => {
       console.log(data);
     };
 
-    const getHistoryFromBackend = async () => {
-      const team_id = 1;
-      const response = await fetch("http://127.0.0.1:5000/get-history", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          team_id: team_id, 
-        }),
-      });
-      const data = await response.json();
-      if(data.history.length > 0){
-        setMessages(data.history);
-      }
-    };  
-
-
-    useEffect(() => {
-      getHistoryFromBackend();
-    }, []);
 
     useEffect(() => {
       if (
-        messages.length > 0 &&
-        messages[messages.length - 1].sender !== "chatgpt"
+        props.messages.length > 0 &&
+        props.messages[props.messages.length - 1].sender !== "chatgpt"
       ) {
         const fetchAnswerAndUpdateMessages = async () => {
-          const question = messages[messages.length - 1].text;
+          const question = props.messages[props.messages.length - 1].text;
           const answer = await sendQuestionToAPI(question);
           // const questions = await getMoreQuestionsFromAPI();
           saveHistoryToBackend({ text: answer, sender: "chatgpt" });
+          console.log("Check the team id: " + props.team_id);
         };
   
         fetchAnswerAndUpdateMessages();
       }
-    }, [messages]);
+    }, [props.messages]);
   
     const handleSendMessage = (message) => {
-      setMessages([...messages, message]);
+      props.setMessages([...props.messages, message]);
     };
 
     const chatMessagesContainerRef = useRef(null);
@@ -102,7 +82,7 @@ const ChatWindow = () => {
         if (chatMessagesContainerRef.current) {
         chatMessagesContainerRef.current.scrollTop = chatMessagesContainerRef.current.scrollHeight;
         }
-    }, [messages]);
+    }, [props.messages]);
 
     const renderChatGPTMessageButtons = () => {
       return (
@@ -123,7 +103,7 @@ const ChatWindow = () => {
     return (
         <div className={styles.chatWindow}>
           <div className={styles.chatMessagesContainer} ref={chatMessagesContainerRef}>
-            {messages.map((message, index) => (
+            {props.messages.map((message, index) => (
               <div key={index} className={`${styles.messageContainer} ${message.sender === "user" ? styles.userMessage : ""}`}>
                 <div className={`${styles.avatar} ${message.sender === "user" ? styles.userAvatar : styles.chatGPTAvatar}`}>{message.sender === "user" ? "G" : "C"}</div>
                 <div className={message.sender === "user" ? styles.userMessageBubble : styles.chatGPTMessageBubble}>

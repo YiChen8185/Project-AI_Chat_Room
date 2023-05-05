@@ -1,6 +1,7 @@
 // TestGetTeam.js
 import { useEffect, useState } from "react";
 import "./TestGetTeam.css";
+import getHistoryFromBackend from "./ChatWindow.js";
 
 import Hero from "./Hero";
 
@@ -26,6 +27,32 @@ const TestGetTeam = (props) => {
         }
     };
 
+    const getHistoryFromBackend = async (id) => {
+        // const team_id = props.team_id;
+        const team_id = id;
+        // 又到这个，且有id
+        if (team_id != null) {
+            const response = await fetch("http://127.0.0.1:5000/get-history", {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                team_id: team_id, 
+                }),
+            });
+            const data = await response.json();
+            console.log(data.history);
+            if(data.history != null){
+                props.setMessages(data.history);
+            }
+            else{
+                props.setMessages([]);
+            }
+        }
+        
+      };
+
     const getMemberImage = (memberName) => {
         switch (memberName) {
           case "Product Manager":
@@ -46,7 +73,7 @@ const TestGetTeam = (props) => {
             return ""; // Return a default image URL or an empty string if the member name is not found
         }
     };
-      
+    
 
     useEffect(() => {
         console.log("UserID: " + props.userID);
@@ -55,6 +82,8 @@ const TestGetTeam = (props) => {
 
     const handleTeamClick = (team) => {
         setSelectedTeam(team);
+        props.onTeamID(team.id);
+        getHistoryFromBackend(team.id);
     };
 
     return (
