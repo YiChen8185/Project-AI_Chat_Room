@@ -26,6 +26,28 @@ const TestGetTeam = (props) => {
         }
     };
 
+    const getMemberImage = (memberName) => {
+        switch (memberName) {
+          case "Product Manager":
+            return "https://cdn.discordapp.com/attachments/1087969015370108938/1103827009865515008/1.png";
+          case "Software Engineer":
+            return "https://cdn.discordapp.com/attachments/1087969015370108938/1103827010096222218/2.png";
+          case "Data Scientist":
+            return "https://cdn.discordapp.com/attachments/1087969015370108938/1103827010373025882/3.png";
+          case "UI/UX Designer":
+            return "https://cdn.discordapp.com/attachments/1087969015370108938/1103827010641477732/4.png";
+          case "22C Chef":
+            return "https://cdn.discordapp.com/attachments/1087969015370108938/1103827010981220503/5.png";
+          case "Tech Leader":
+            return "https://cdn.discordapp.com/attachments/1087969015370108938/1103827011291578490/6.png";
+          case "Illustrators":
+            return "https://cdn.discordapp.com/attachments/1087969015370108938/1103827011597783070/7.png";
+          default:
+            return ""; // Return a default image URL or an empty string if the member name is not found
+        }
+    };
+      
+
     useEffect(() => {
         console.log("UserID: " + props.userID);
         getTeam();
@@ -57,6 +79,7 @@ const TestGetTeam = (props) => {
                     {selectedTeam.members.map((member, index) => (
                         <Hero
                             canada={member}
+                            maskCopy={getMemberImage(member)}
                             num200Destinations="🟢"
                             onHeroClick={() => console.log("Hero clicked:", member)}
                             onResetHeroes={(reset) => console.log("Reset Heroes")}
