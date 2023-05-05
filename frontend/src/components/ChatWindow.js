@@ -10,7 +10,7 @@ export const ChatWindow = (props) => {
     });
 
     const sendQuestionToAPI = async (question) => {
-      const response = await fetch("http://127.0.0.1:5000/ask_question", {
+      const response = await fetch("https://guangwei.azurewebsites.net/ask_question", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export const ChatWindow = (props) => {
     };
 
     const getMoreQuestionsFromAPI = async () => {
-      const response = await fetch("http://127.0.0.1:5000/suggest_new_questions", {
+      const response = await fetch("https://guangwei.azurewebsites.net/suggest_new_questions", {
         method: "GET"
       });
       const questions = await response.json();
@@ -40,7 +40,7 @@ export const ChatWindow = (props) => {
       const prevMessages = props.messages;
       const updatedMessages = [...prevMessages, message];
       const team_id = props.team_id;
-      const response = await fetch("http://127.0.0.1:5000/save-history", {
+      const response = await fetch("https://guangwei.azurewebsites.net/save-history", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

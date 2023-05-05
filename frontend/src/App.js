@@ -37,7 +37,7 @@ const App = props => {
   };
 
   const logoutUser = async () => {
-    const response = await fetch("http://127.0.0.1:5000/logout", {
+    const response = await fetch("https://guangwei.azurewebsites.net/logout", {
       method: "POST",
     });
     const responce = await response.json();

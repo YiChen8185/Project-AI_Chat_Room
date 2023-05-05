@@ -19,7 +19,7 @@ const Team = ({
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://127.0.0.1:5000/api/create-team", {
+            const response = await fetch("https://guangwei.azurewebsites.net/api/create-team", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
