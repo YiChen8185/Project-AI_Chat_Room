@@ -35,25 +35,25 @@ Video; https://youtu.be/AbXNH9ydvqg
 
 
 
-#### 功能
+#### Features
 
-- 我们提前设定好机器人的简介，名字，头像和第一个prompt（三个）
-- 可以登陆界面，登陆界面是一个浮框。包含用户名和密码，密码可以是假的。
-  - 必须先登陆再去点击create team。
+- We set in advance the bot's profile, name, avatar and first prompt (three)
+- Can login to the interface, which is a floating box. The login screen is a floating box containing a username and password, which can be false.
+  - You must be logged in before clicking create team.
 
-- user可以增加，减少和修改team。team里面会包含team的简介，team的名字和拥有的robot。
-  - team是完全空的，需要user自己去完成。
+- The user can add, subtract and modify teams, the team will contain a brief description of the team, the name of the team and the robots it owns.
+  - The team is completely empty and needs to be completed by the user.
 
-- 点击 Team 以后，可以进行聊天。存储进入一个user id里面。
+- Clicking on Team will allow you to chat. It is stored in a user id.
 
-- Chat部分：仅仅是简单的聊天，然后使用第一个prompt. 直接设定为随机一个机器人。
+- Chat section: just a simple chat, then use the first prompt. Set it to a random bot.
 
-#### 难点overall
+#### Difficultiesoverall
 
-1. 全新的框架，例如如何使用SQLite做为Database。前后端分离的情况下如何传递数据。例如我们每一个user都会有独立的username，id，password，email等。其中password将会是登陆真的需要反馈的。
-2. 如何使用API ChatGPT，需要阅读官方文件并且做大量的实验。（我们认为也是读写的一部分）其次，Prompt，我们机器人在回答问题会经过我们prompt得训练。如何做出好的prompt
-3. 其余：点击选择机器人，输入，每个user多个team，每个team进行独立的chat等。
-4. 部署：如何把后端部署起来，并且使用API进行连接，我们花费了大量的时间。
+1. new framework, such as how to use SQLite as Database. how to pass data in the case of front-end and back-end separation. For example, each user will have a separate username, id, password, email, etc. The password will be the feedback that is really needed for login. For example, each user will have a separate username, id, password, email, etc. Among them, the password will be the one that you really need to give feedback for login.
+2. How to use the API ChatGPT, need to read the official documents and do a lot of experiments. (We think it is also part of reading and writing.) Secondly, Prompt, our robots will go through our prompt training when answering questions. How to make a good prompt
+3. the rest: click to select bots, input, multiple teams per user, separate chat for each team, etc. 4. deployment: how to put the backend in place.
+4. Deployment: We spent a lot of time on how to deploy the backend and connect to it using APIs.
 
 ### Links may help
 
@@ -61,32 +61,28 @@ https://towardsdatascience.com/build-deploy-a-react-flask-app-47a89a5d17d9
 
 ## What we have done - Features
 
-这次的框架是由我们与milestone完全不一样写的框架，使用Flask基于Python做为后端，前端使用REACT。我们希望做出一个真的有意义的project，所以我们这次的开发加入了ChatGPT AI。并以这个为核心功能开始开发我们项目，并且ChatGPT实际上以及被我们提前使用Prompt进行pre- train。
+This time, the framework is written by us completely different from Milestone, using Flask based on Python as the backend, and REACT as the front-end. we want to make a really meaningful project, so we added ChatGPT AI to the development this time, and started to develop our project with this as the core functionality, and ChatGPT In fact, ChatGPT has been pre-trained by us using Prompt.
 
-功能一：ChatGPT Communicate
+Function 1: ChatGPT Communicate
 
-- 使用API
-  - 通过ChatGPT的官方document学习了如何使用它的API，并把它加入到了project中。在核心的聊天功能中，实际上就是和ChatGPT进行聊天。
-- 提前训练Prompt
-  - 通过大量测试，我们提前为ChatGPT写好了文字，也就是里面的实际上进行回答的问题，是我们已经完成预处理的。
-  - 我们做了多个prompt，所以user可以遇到不一样的robot，并且会有不一样的回答。
+- Using the API
+  - Learned how to use ChatGPT's API through its official documentation and added it to the project. In the core chat function, it is actually chatting with ChatGPT.
+- Training Prompt in advance
+  - Through extensive testing, we wrote the text for ChatGPT ahead of time, meaning that the questions inside that actually do the answering are ones that we've done the preprocessing on.
+  - We made multiple prompts so the USER can encounter different ROBOTS and will have different answers.
 
-功能二：团队建造与数据可交互
+Feature 2: Team Building and Data Interactability
 
-- 团队
-  - 建立团队：可以加入名字和描述。每个user可以建立多个团队。团队
-  - 删除团队：从Database中删除选取的团队。
-- 独立数据库
-  - 我们为团队独立建了一个数据库，但是通过技术把两个数据库。team中加入user.id来确保只有一个owner，而user中有一个notes，可以获得所有相关的notes。
+- Teams
+  - Build team: you can add name and description. Each user can build multiple teams. Teams
+  - Delete Team: Deletes the selected team from the Database.
+- Separate Databases
+  - We created a separate database for teams, but technically we put two databases together. team has a user.id to make sure there is only one owner, and user has a notes to get all the relevant notes.
 
-功能三：登陆（因为是一个全新的模版，我们依旧花费了大量时间在完成登陆界面）
+Function 3: Login (we still spent a lot of time on completing the login screen because it's a brand new template)
 
-- 登陆
-  - 创造账号：可以输入 名字，邮箱以及两次确认密码。账号会被记录在flask后端的database中。
-  - 登陆界面：通过搜索database确认身份（有密码），然后进行登陆。
-  - 登出
-
-## Details: 步骤以及截图
-
-*注意：有些截图可能会和实际有细微区别（因为我们可能会小改），但是大模型应该是一样的*
+- Login
+  - Create an account: you can enter a name, an e-mail address and a password that you can confirm twice. The account is recorded in a database in the flask backend.
+  - Login screen: Confirm your identity (with password) by searching the database and then login.
+  - Logout
 
