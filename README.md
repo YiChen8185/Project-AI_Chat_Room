@@ -27,7 +27,10 @@ npm install react-router-dom
 npm start
 ```
 
-Video; https://youtu.be/AbXNH9ydvqg
+Video： https://youtu.be/AbXNH9ydvqg
+
+Original Link: https://github.com/2023-ctech-cs5356/milestone-3-programmingape
+This is a project down by me and Guangwei Jiang.
 
 ## Overall
 #### Features
