@@ -30,11 +30,6 @@ npm start
 Video; https://youtu.be/AbXNH9ydvqg
 
 ## Overall
-
-#### Project实现了什么
-
-
-
 #### Features
 
 - We set in advance the bot's profile, name, avatar and first prompt (three)
