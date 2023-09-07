@@ -32,6 +32,11 @@ Video： https://youtu.be/AbXNH9ydvqg
 Original Link: https://github.com/2023-ctech-cs5356/milestone-3-programmingape
 This is a project down by me and Guangwei Jiang.
 
+## Important Link
+##### Link for website: https://ai-team-chat.firebaseapp.com/
+##### Link for Figma: https://www.figma.com/file/VAV37q2OFJAGneZsRumzo3/StartUp-Final-Project---ProgrammingApe?type=design&node-id=0-1&mode=design
+#### Link for Description Doc: https://docs.google.com/document/d/1VCecVPePJVE2ae42SWruczxSwVLJpajPM95PXXInl9U/edit#heading=h.asjxvofoa9ka
+
 ## Overall
 #### Features
 
